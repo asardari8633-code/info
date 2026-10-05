@@ -1,5 +1,5 @@
 // برای انتشار نسخه‌ی جدید، عدد نسخه را بالا ببرید
-const V = 'ardakan-accounts-v16';
+const V = 'ardakan-accounts-v17';
 const CORE = ['./', 'index.html', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(V).then(c => c.addAll(CORE)).then(() => self.skipWaiting()));
