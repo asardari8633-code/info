@@ -316,6 +316,11 @@ body.lite .bgfx i,body.lite .float,body.lite .stage:after,body.lite .tilt::after
 body.lite #sheet::before,body.lite .instbtn,body.lite #logo,body.lite #logo svg,body.lite .sm .si,body.lite .skc{animation:none!important}
 body.lite #fx{display:none!important}
 body.lite .stage{perspective:none}
+
+/* ظاهر شدن کارت‌ها: زودتر از رسیدن به صفحه، کوتاه و بدون تأخیر پله‌ای */
+.acc,.rv{transform:translate3d(0,16px,0);transition:opacity .3s ease,transform .4s cubic-bezier(.2,.9,.2,1);transition-delay:0s}
+.acc.in,.rv.in{opacity:1;transform:none}
+body.lite .acc,body.lite .rv{opacity:1;transform:none;transition:none}
 </style>
 </head>
 <body>
@@ -504,7 +509,7 @@ if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol))window.addE
 function observeCards(root){
   const els=(root||document).querySelectorAll('.acc,.rv');
   if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));return}
-  if(!window._io)window._io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');window._io.unobserve(e.target)}}),{threshold:.1,rootMargin:'0px 0px -5% 0px'});
+  if(!window._io)window._io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');window._io.unobserve(e.target)}}),{threshold:0,rootMargin:'0px 0px 320px 0px'});
   els.forEach(e=>{e.classList.remove('in');window._io.observe(e)});
 }
 function moveInd(){const on=document.querySelector('.tab.on'),ind=document.getElementById('ind');if(!on||!ind)return;ind.style.width=on.offsetWidth+'px';ind.style.transform='translateX('+on.offsetLeft+'px)'}
